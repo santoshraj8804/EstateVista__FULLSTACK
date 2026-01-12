@@ -1,6 +1,10 @@
 import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import "./profilePage.scss";
+import apiRequest from "../../lib/apiRequest";
+import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Suspense, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage() {
 
@@ -32,15 +36,15 @@ function ProfilePage() {
             <span>
               Avatar:
               <img
-                src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src={currentUser.avatar || "noavatar.jpg"} 
                 alt=""
               />
             </span>
             <span>
-              Username: <b>Santosh Raj</b>
+              Username: <b>{currentUser.username}</b>
             </span>
             <span>
-              E-mail: <b>santosh@gmail.com</b>
+              E-mail: <b>{currentUser.email}</b>
             </span>
             <button onClick={handleLogout}>Logout</button>
           </div>
